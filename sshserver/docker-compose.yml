@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  ssh_admin:
+    restart: "no"
+    build:
+      context: ssh_build
+    volumes:
+      - authorized_keys/fido_key.pub:/home/user/.ssh/authorized_keys
+    ports:
+      - "0.0.0.0:22022:22"

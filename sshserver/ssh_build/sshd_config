@@ -1,0 +1,42 @@
+#       $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+Port 22
+ListenAddress 0.0.0.0
+
+SyslogFacility AUTH
+LogLevel INFO
+
+# Authentication:
+
+# Login will timeout after 2 minutes
+LoginGraceTime 2m
+# Disable the root account to login via SSH
+PermitRootLogin no
+# Enforcing strict permissions and locations of key files
+StrictModes yes
+
+# Allow Authentication against Public Keys like our FIDO2 signed key
+PubkeyAuthentication yes
+
+# Location of our Public Key file
+AuthorizedKeysFile     .ssh/authorized_keys
+
+# Disable Password Authentication but use local user accounts
+PasswordAuthentication no
+UsePAM yes
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication no
+
+
