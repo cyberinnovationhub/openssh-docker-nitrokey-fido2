@@ -1,11 +1,18 @@
 version: '3.7'
 
 services:
-  ssh_admin:
+  server:
     restart: "no"
     build:
       context: ssh_build
+    hostname: "server.ssh"
     volumes:
-      - authorized_keys/fido_key.pub:/home/user/.ssh/authorized_keys
-    ports:
-      - "0.0.0.0:22022:22"
+      - ./authorized_keys/first_fido_ssh_key.pub:/home/user/.ssh/authorized_keys
+    expose:
+      - "22"
+
+networks:
+  default:
+    external:
+      name: fido-ssh-test
+
