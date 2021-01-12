@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  client:
+    restart: "no"
+    build:
+      context: ssh_build
+    hostname: "client.ssh"
+    volumes:
+      - ./generated_keys/:/root/generated_keys/
+      - /dev/bus/usb:/dev/bus/usb
+      - /sys/bus/usb/:/sys/bus/usb/
+      - /sys/devices/:/sys/devices/ 
+      - /dev/hidraw4:/dev/hidraw4
+    privileged: true
+
+networks:
+  default:
+    external:
+      name: fido-ssh-test
