@@ -11,7 +11,7 @@ services:
       - /dev/bus/usb:/dev/bus/usb
       - /sys/bus/usb/:/sys/bus/usb/
       - /sys/devices/:/sys/devices/ 
-      - /dev/hidraw4:/dev/hidraw4
+      - /dev/hidraw0:/dev/hidraw0
     privileged: true
 
 networks:
